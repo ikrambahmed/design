@@ -1,13 +1,13 @@
-<div class="view" style="background-image: url('https://www.beautycolorcode.com/fcebef.png'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-    <div class="container">
-        <div class="title"><h1> قائمة المنتفعيين </h1>
-        </div>
+   <div>
+      <div class="title"><h1> قائمة المنتفعيين </h1>        </div>
+
+   <div class="container">
        <div class = "row"> 
         <div class="search-missionnaire">
           <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching ">
         </div>
         <div class="col-lg-12">
-           <table class="table table-hover" style="background-image: url('https://www.xmple.com/wallpaper/white-pink-gradient-linear-2560x1800-c2-ffffff-ffb6c1-a-240-f-14.svg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+           <table class="table table-hover" >
               <thead>
                 <tr>
                   <th>ب.ت </th> <th>المعرف الوحيد </th>
@@ -32,12 +32,11 @@
                 </tr>
               </tbody>
            </table>
-    
         </div>
         <div>
-          <app-missionnaire [operation]="operation" [selectedMissionnaire]="selectedMissionnaire"></app-missionnaire>
+          <app-missionaire [operation]="operation" [selectedMissionnaire]="selectedMissionnaire"></app-missionaire>
         </div>
       </div>
     
     </div>
-    </div>
+  </div>

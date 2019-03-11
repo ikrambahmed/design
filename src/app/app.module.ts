@@ -21,12 +21,19 @@ import { ListeMissionnaireComponent } from './liste-missionnaire/liste-missionna
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import { MissionComponent } from './mission/mission.component';
 import { MissionnaireComponent } from './missionnaire/missionnaire.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatPaginator, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {MatTableModule} from '@angular/material/table' ; 
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { MissionService } from './services/mission.service';
 import { ListeMissionnaireService } from './services/liste-missionnaire.service';
 import { MissionnaireService } from './services/missionnaire.service';
+import { ListaaComponent } from './listaa/listaa.component';
+import { OrdMissionnaireComponent } from './ord-missionnaire/ord-missionnaire.component';
+import { ChangePassComponent } from './change-pass/change-pass.component';
+import { MissionaireComponent } from './missionaire/missionaire.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,13 @@ import { MissionnaireService } from './services/missionnaire.service';
     ListeMissionnaireComponent,
     ListeMissionComponent,
     MissionComponent,
-    MissionnaireComponent
+    MissionnaireComponent,
+    OrdMissionnaireComponent,
+    ListaaComponent,
+    ChangePassComponent,
+    MissionaireComponent
+  
+
   ],
   imports: [
     BrowserModule,
@@ -50,9 +63,11 @@ import { MissionnaireService } from './services/missionnaire.service';
     ReactiveFormsModule , 
     HttpClientModule ,
     NgxPaginationModule,
-    BrowserAnimationsModule
-
-
+    BrowserAnimationsModule , 
+    MatTableModule , 
+    MatPaginatorModule , 
+    NgxPaginationModule,
+    MatSortModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
 

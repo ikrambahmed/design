@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
   logout(){
     this.appService.logout(()=>{
-      this.router.navigateByUrl('/login1');
+      this.router.navigateByUrl('/login');
     });
   }
 
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     });
     return hasRole ; 
   }
-
+  
   hasRoleAdmin(){
   let  hasRole :Boolean =false ; 
     this.principal.authorities.forEach(item => {
