@@ -20,27 +20,31 @@
           </div>
 
           <div>
-            <input type="textbox" id="champ1" />
-            <input type="textbox" id="champ2" />
+            <input type="textbox" id="champ1" class="class-form" formControlName="numMission" [(ngModel)]="codeMission"/>
+
             <label for="code" class="font-weight-normal">رقم المأمورية</label>
+          </div>
+
+          <div>
+            <input type="textbox" id="champ12" class="class-form" formControlName="code" [(ngModel)]="cod" hidden/>
           </div>
 
           <div>
             <label for="MotClé" class="font-weight-normal">الكلمة المفتاح</label>
             <select class="form-control form-control-lg" id="select">
-              <option>Default select</option>
+              <option *ngFor="let motcle of motcles" [ngValue]="motcle">{{motcle.amotcle}}</option>
             </select>
           </div>
 
           <div>
             <label for="ObjetA" class="font-weight-normal">موضوع المأمورية </label>
 
-            <textarea for="objeetA" class="class-form" formControlName="objetA">you are in the zone</textarea>
+            <textarea for="objeta" class="class-form" formControlName="objeta">you are in the zone</textarea>
           </div>
 
           <div>
-            <label for="ObjetF" class="font-weight-normal"> Objet en Français </label>
-            <textarea for="objeetF" formControlName="objetF" class="class-form">you are in the zone</textarea>
+            <label for="objetl" class="font-weight-normal"> Objet en Français </label>
+            <textarea for="objeetF" formControlName="objetl" class="class-form">you are in the zone</textarea>
           </div>
           <div>
             <input type="text" class="class-form" />
@@ -48,11 +52,11 @@
             <label for="duree" class="font-weight-normal" style="width: 6rem;">المدة </label>
 
 
-            <input type="date" id="date1" class="class-form" formControlName="date_fin" />
+            <input type="date" id="date1" class="class-form" formControlName="datarrP" />
             <label for="retour" class="font-weight-normal">تاريخ الاياب </label>
 
 
-            <input type="date" id="date2" class="class-form" formControlName="date_debut" />
+            <input type="date" id="date2" class="class-form" formControlName="datdepP" />
             <label for="aller" class="font-weight-normal">تاريخ الذهاب </label>
 
           </div>

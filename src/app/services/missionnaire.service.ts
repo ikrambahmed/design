@@ -10,8 +10,11 @@ import { grade } from '../models/grade';
 
 export class MissionnaireService {
 
-  readonly Url='http://localhost:8080/api/missionaire' ;
-  readonly rootUrL='http://localhost:8080/api/listgrade' ; 
+  readonly Url='http://localhost:8080/api' ;
+  readonly Ul='http://localhost:8080/api/missionaire' ;
+
+  readonly l = 'http://localhost:8080/api/add' ; 
+  readonly rootUrL='http://localhost:8080/api/allGrade' ; 
 
   readonly rootUrl='http://localhost:8080' ; 
   readonly root = 'http://localhost:8080/api/missionaire/lista' ; 
@@ -21,7 +24,7 @@ export class MissionnaireService {
   constructor(private http : HttpClient){
   }
   getMissionares():Observable<any> {
-    return this.http.get(this.Url) ; 
+    return this.http.get(this.Ul) ; 
   }
 
   loadMissionaire()
@@ -32,7 +35,7 @@ export class MissionnaireService {
   )}
   addMissionnaire( miss : missionnaire) : Observable<any>{
     console.log('fi west el service') ; 
-    return this.http.post(this.Url ,miss  ) ; 
+    return this.http.post(this.l ,miss  ) ; 
  
   }
   updateMissionnaire(miss : missionnaire ): Observable<any> {
@@ -56,7 +59,7 @@ export class MissionnaireService {
   }
   getCategories():Observable<any> 
   {
-    return this.http.get(this.rootUrl+'/api/listcategorie') ; 
+    return this.http.get(this.rootUrl+'/api/all') ; 
   }
   getgroupes():Observable<any> 
   {
@@ -68,6 +71,6 @@ export class MissionnaireService {
 }*/
 
 getOneMiss(cin : String) : Observable<any>{
-  return this.http.get('http://localhost:8080/api/missionaire/lista?cin='+cin) ; 
+  return this.http.get('http://localhost:8080/api/lista?cin='+cin) ; 
  }
 }

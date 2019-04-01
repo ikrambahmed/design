@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { PrincipalState } from './shared/principal.state';
 import { SAVE_PRINCIPAL } from './shared/save.principal.action';
 
+
 @Injectable()
 export class AppService {
   response ; 
@@ -16,6 +17,7 @@ export class AppService {
 
   authenticate(credentials, callback) {
     if(credentials){
+      let user = credentials.username ; 
       const token = btoa(credentials.username + ':' + credentials.password);
       this.cookieService.set('token',token);
 
@@ -29,7 +31,8 @@ export class AppService {
               type : SAVE_PRINCIPAL , 
               payload : response
             }) ; 
-            
+            let key = 'username';
+             localStorage.setItem(key, user); 
           } else {
               this.authenticated = false;
           }

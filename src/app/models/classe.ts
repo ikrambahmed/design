@@ -1,5 +1,7 @@
 export class classe {
-    constructor(public code? : String ,
-        public liba? : String , 
-        public libfr?  :String ) {} 
+    constructor(public classgrd? : String ,
+        public libclassgrda? : String , 
+        public libclassgrdl?  :String ) {} 
 }
+
+

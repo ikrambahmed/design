@@ -1,5 +1,5 @@
 export class groupe {
-    constructor(public code? : String ,
-        public liba? : String , 
-        public libfr?  :String ) {} 
+    constructor(public codgrp? : String ,
+        public liblibgrpa? : String , 
+        public libgrpl?  :String ) {} 
 }

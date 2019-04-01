@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MissionService {
-  readonly Url='http://localhost:8080/api/mission/ajout' ;
+  readonly Url='http://localhost:8080/api/mission/add' ;
   readonly url = 'http://localhost:8080/api/mission/getall' ; 
 missions : mission[];
   constructor(private http : HttpClient) { }
@@ -16,6 +16,12 @@ missions : mission[];
     console.log('el service') ; 
     return this.http.post(this.Url ,mission  ) ; 
   }
- 
+  getMotcle():Observable<any> 
+  {
+    return this.http.get('http://localhost:8080/api/allMotcle') ; 
+  }
 
+  getLatestMissionCode(code : String) :Observable<any>{
+    return this.http.get('http://localhost:8080/api/mission/latestMissionCode?codeDept='+code) ; 
+  }
 }

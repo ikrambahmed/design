@@ -29,12 +29,10 @@ butonMsg ;
 @Input()
  selectedMissionnaire ; 
 
-
   constructor(private fb : FormBuilder , private missionnaireService : MissionnaireService) { 
     this.createForm() ; 
   
   }
-
 
   loadgrade()
   {this.missionnaireService.getGrade().subscribe(
@@ -44,18 +42,19 @@ butonMsg ;
   )}
   loadfonction()
   {
-    
     this.missionnaireService.getfonctions().subscribe(
     data => { this.fonctions=data;},
     error => {console.log(error); } , 
     () => {console.log('loading fonctions was done ')}
   )}
+
   loadclasse()
   {this.missionnaireService.getClasses().subscribe(
     data => { this.classes=data;},
     error => {console.log(error); } , 
     () => {console.log('loading classes was done ')}
   )}
+
   loadcateg()
   {this.missionnaireService.getCategories().subscribe(
     data => { this.categories=data;},
@@ -71,42 +70,40 @@ butonMsg ;
   )}
  
   ngOnInit() {
-
     this.loadgrade(); 
     this.loadcateg(); 
     this.loadclasse(); 
     this.loadgroupe(); 
     this.loadclasse(); 
-    this.loadfonction() ;
-    
+    this.loadfonction();
 }
- createForm()
-  {
-    this.missionnaireForm = this.fb.group({
-      cin: ['',Validators.required],
-      matricule: ['',Validators.required],
-      nom: ['',Validators.required],
-      nomL: ['',Validators.required],
-      prenom: ['',Validators.required],
-      prenomL: ['',Validators.required],
-      nationalite: ['',Validators.required],
-      nationaliteL : ['',Validators.required],
-      datenaissance : ['',Validators.required],
-      place_naissance : ['',Validators.required],
-      date_cin : ['',Validators.required],
-      place_cin : ['',Validators.required],
-      niveau  : ['',Validators.required],
-      ministr: ['',Validators.required],
-      rib: ['',Validators.required] , 
-      grp : ['',Validators.required],
-      grad : ['',Validators.required],
-      fonct: ['',Validators.required],
-      cl: ['',Validators.required],
-      cate : ['',Validators.required],
-      groupe: ['',Validators.required],
-      //dept: ['',Validators.required]
-  });
-  }
+createForm()
+{
+  this.missionnaireForm = this.fb.group({
+    cin: ['',Validators.required],
+    matricule: ['',Validators.required],
+    nom: ['',Validators.required],
+    nomL: ['',Validators.required],
+    prenom: ['',Validators.required],
+    prenomL: ['',Validators.required],
+    nationalite: ['',Validators.required],
+    nationaliteL : ['',Validators.required],
+    datenaissance : ['',Validators.required],
+    place_naissance : ['',Validators.required],
+    date_cin : ['',Validators.required],
+    place_cin : ['',Validators.required],
+    niveau  : ['',Validators.required],
+    ministr: ['',Validators.required],
+    rib: ['',Validators.required] , 
+    grp : ['',Validators.required],
+    graade : ['',Validators.required],
+    fonnction: ['',Validators.required],
+    classgrd: ['',Validators.required],
+    codCat : ['',Validators.required],
+    groupe: ['',Validators.required],
+    //dept: ['',Validators.required]
+});
+}
   initMiss()
   { 
     this.selectedMissionnaire= new missionnaire() ; 
@@ -116,33 +113,29 @@ butonMsg ;
   this.missionnaireService.updateMissionnaire(this.selectedMissionnaire)
   .subscribe(
     res =>{
-
       this.initMiss() ; 
       this.missionnaireService.loadMissionaire() ; 
       this.operation='' ; 
-
     }
   )} 
   remove()
   {
   this.missionnaireService.deleteMissionnaire(this.selectedMissionnaire.cin).subscribe(
     res => {
-     
       this.selectedMissionnaire = new missionnaire() ;
       this.missionnaireService.loadMissionaire() ; 
       this.operation='' ; 
     }
-    
   )}
 
-
-
- 
   add(){
-    console.log('nzel aala add') ; 
+    console.log(this.missionnaireForm.value.graade.code) ; 
     const m = this.missionnaireForm.value ;
+    alert(JSON.stringify(m));
     this.missionnaireService.addMissionnaire(m).subscribe(
       res => {
+        alert(JSON.stringify(res));
+
         console.log('c bon lka res') ; 
         this.initMiss() ; 
         this.missionnaireService.loadMissionaire() ; 

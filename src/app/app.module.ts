@@ -33,7 +33,8 @@ import { MissionnaireService } from './services/missionnaire.service';
 import { ListaaComponent } from './listaa/listaa.component';
 import { OrdMissionnaireComponent } from './ord-missionnaire/ord-missionnaire.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
-import { MissionaireComponent } from './missionaire/missionaire.component';
+import { HomeService } from './services/home.service';
+import { BarComponent } from './bar/bar.component';
 
 @NgModule({
   declarations: [
@@ -49,15 +50,12 @@ import { MissionaireComponent } from './missionaire/missionaire.component';
     OrdMissionnaireComponent,
     ListaaComponent,
     ChangePassComponent,
-    MissionaireComponent
-  
-
-  ],
+    BarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MDBBootstrapModule.forRoot() , 
     FormsModule , 
+    MDBBootstrapModule.forRoot() , 
     StoreModule.forRoot({principal:principalReducer}) , 
     Ng2SearchPipeModule,
     ReactiveFormsModule , 
@@ -71,7 +69,7 @@ import { MissionaireComponent } from './missionaire/missionaire.component';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
 
-  providers: [ AppService, CookieService,MissionnaireService,ListeMissionnaireService,MissionService, 
+  providers: [ AppService, CookieService,MissionnaireService,ListeMissionnaireService,MissionService, HomeService,
     {provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor , multi : true }],
     bootstrap: [AppComponent]
 })

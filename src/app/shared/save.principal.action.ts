@@ -6,7 +6,7 @@ import { Principal } from './principal.model';
     readonly type =SAVE_PRINCIPAL ; 
     constructor(public payload : Principal)
  {
-
+    
  }
 
 }

@@ -9,7 +9,8 @@ import { ListaaComponent } from './listaa/listaa.component';
 import { OrdMissionnaireComponent } from './ord-missionnaire/ord-missionnaire.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
-import { MissionaireComponent } from './missionaire/missionaire.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BarComponent } from './bar/bar.component';
 
 const routes: Routes = [
   {path :'login' , component : LoginComponent} , 
@@ -20,10 +21,9 @@ const routes: Routes = [
     {path : 'ord',component:OrdMissionnaireComponent},
     {path:'lista', component:ListaaComponent},
     {path:'change', component: ChangePassComponent} , 
-    {path:'list' ,component:ListeMissionComponent} , 
-    {path:'miss', component:MissionaireComponent}
-
-  
+    {path:'list' ,component:ListeMissionComponent} ,
+    {path:'navbar',component:NavbarComponent} , 
+    {path:'bar',component:BarComponent} 
 
 
 ];

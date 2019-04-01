@@ -1,5 +1,6 @@
 export class fonction {
-    constructor(public code? : String ,
-        public liba? : String , 
-        public libfr?  :String ) {} 
+    constructor(public codFonction? : String ,
+        public libFonca? : String , 
+        public libFoncl?  :String,
+        public typFonc?  :String ) {} 
 }
