@@ -24,6 +24,7 @@ import { MissionnaireComponent } from './missionnaire/missionnaire.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatPaginator, MatPaginatorModule, MatSortModule } from '@angular/material';
 import {MatTableModule} from '@angular/material/table' ; 
+import { SidebarModule } from 'ng-sidebar';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -35,6 +36,7 @@ import { OrdMissionnaireComponent } from './ord-missionnaire/ord-missionnaire.co
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { HomeService } from './services/home.service';
 import { BarComponent } from './bar/bar.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -50,10 +52,12 @@ import { BarComponent } from './bar/bar.component';
     OrdMissionnaireComponent,
     ListaaComponent,
     ChangePassComponent,
-    BarComponent],
+    BarComponent,
+    MenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SidebarModule.forRoot(),
     FormsModule , 
     MDBBootstrapModule.forRoot() , 
     StoreModule.forRoot({principal:principalReducer}) , 

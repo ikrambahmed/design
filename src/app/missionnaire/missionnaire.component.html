@@ -11,6 +11,8 @@
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"> 
 </head>
   <body> 
+      <div class="card">
+
 <div *ngIf="operation == 'ADD' || operation =='EDIT' || operation =='REMOVE'">
 <div class="card-header bg-info text-white" >
     {{operation == 'ADD' ? 'ادخال' :
@@ -20,7 +22,7 @@
 </div>
 
 
-<div class="card-body"  >
+<div class="card-body">
     <form [formGroup]="missionnaireForm">
       <div class="form-group col-md-4" >
         <label> مكانها </label>
@@ -141,6 +143,7 @@
                 </button>
               </div>
       </form>
+</div>
 </div>
 </div>
 </body>
