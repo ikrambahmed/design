@@ -1,3 +1,20 @@
+<app-navbar></app-navbar>
+<div>
+    <div dir="rtl" lang="ar">
+      <div class="container">
+          <div class="card">
+              <div class="card-header bg-info text-white">
+                <div class="topnav-right">
+                  <label>قائمة المنتفعيين
+                  </label>
+                </div>
+                <div class="search-missionnaire">
+                  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                    placeholder="&#61442; ابحث هنا ">
+                </div>
+              </div>
+          <div class="card-body">
+            <div class="col-lg-12">
 <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="code_mission">
@@ -26,10 +43,13 @@
       <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <div>
     <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
 
-    </div>
-    <div>
-        <app-missionaire [operation]="operation" [selectedMissionnaire]="selectedMissionnaire"></app-missionaire>
-      </div>
-  
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

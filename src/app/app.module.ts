@@ -37,6 +37,8 @@ import { ChangePassComponent } from './change-pass/change-pass.component';
 import { HomeService } from './services/home.service';
 import { BarComponent } from './bar/bar.component';
 import { MenuComponent } from './menu/menu.component';
+import { AjoutMissionComponent } from './ajout-mission/ajout-mission.component';
+import { HMissionComponent } from './h-mission/h-mission.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { MenuComponent } from './menu/menu.component';
     ListaaComponent,
     ChangePassComponent,
     BarComponent,
-    MenuComponent],
+    MenuComponent,
+    AjoutMissionComponent,
+    HMissionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

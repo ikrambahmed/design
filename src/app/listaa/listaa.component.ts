@@ -23,7 +23,7 @@ displayedColumns=['code_mission','objetA','objetF','date_debut'] ;
 constructor(private missionService : MissionService , 
         private http : HttpClient , 
         private router : Router) { }
-        readonly url = 'http://localhost:8080/api/mission'
+        readonly url = 'http://localhost:8080/api/mission/listmission'
         getMissions():Observable<any> {
           return this.http.get(this.url) ; 
         }

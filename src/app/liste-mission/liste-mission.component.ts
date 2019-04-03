@@ -21,7 +21,7 @@ export class ListeMissionComponent implements OnInit {
   totalRec : number;
   page: number = 1;
   listData : MatTableDataSource<any> ; 
-  readonly url = 'http://localhost:8080/api/mission'
+  readonly url = 'http://localhost:8080/api/mission/listmission'
   constructor(private missionService : MissionService , 
     private http : HttpClient , 
     private router : Router) { }
@@ -42,7 +42,7 @@ export class ListeMissionComponent implements OnInit {
 
     },
     error => {console.log(error) } , 
-    () => {console.log('loading missionnaires was done ');}
+    () => {console.log('loading missions was done ');}
   ) ; 
   
 }
