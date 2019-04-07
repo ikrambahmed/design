@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="container" style="margin-bottom:10%">
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+
+      <div class="card-header bg-info text-white" id="headingOne">
+        <h2 class="mb-0 text-right">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            إضافة الاعتمادات للمأمورية
+          </button>
+        </h2>
+
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body ">
+
+          <form [formGroup]="OrdMissForm" #f="ngForm">
+            <div class="row">
+                <div class="form-group col-md-4 text-right">
+                    <label>وسيلة النقل
+                    </label>
+                    <select class="form-control form-control-lg">
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+              
+              <div class="form-group col-md-4 text-right">
+                <label>المدينة
+                </label>
+                <input type="textbox" class="form-control" formControlName="ville" required [(ngModel)]="ville">
+              </div>
+              <div class="form-group col-md-4 text-right">
+                  <label>البلد
+                  </label>
+  
+                  <select class="form-control form-control-lg" id="select" formControlName="pays">
+                    <option *ngFor="let pay of pays" [ngValue]="pay">{{pay.liba}}</option>
+                  </select>
+                </div>
+             
+            </div>
+            <div class="row ">
+                <div class="form-group col-md-12 text-right">
+
+                <div id="table" class="table-editable">
+                  <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <tr>             
+                        <th class="text-center">المجموع</th>    
+                        <th class="text-center">مصاريف التنقل</th>
+                      <th class="text-center">مصاريف المامورية</th>
+                      <th class="text-center">الاعتمادات</th>
+                    </tr>
+                    <tr>
+                      <td class="pt-3-half" contenteditable="false">40</td>
+                      <td class="pt-3-half" contenteditable="true">30</td>
+                      <td class="pt-3-half" contenteditable="true">10</td>
+                      <td class="pt-3-half" contenteditable="false">400</td>
+                    </tr>
+                   
+                  </table>
+                </div>
+              </div>
+            </div>
+            </form>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

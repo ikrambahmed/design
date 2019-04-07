@@ -28,10 +28,11 @@ password: ['', Validators.compose([Validators.required, Validators.minLength(3)]
 });
 }
 
+
 login(){
   this.appService.authenticate(this.credentials, ()=>{
-   // console.log('login lekbira') ; 
-    this.router.navigateByUrl('/home');
+    console.log('login lekbira') ; 
+    this.router.navigateByUrl('/bar');
   });
   /*this.router.navigateByUrl('/home') ;*/
 }

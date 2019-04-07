@@ -70,11 +70,11 @@
               <ng-sidebar-container>
                 
                 <ng-sidebar [(opened)]="_opened">
-                              <button class="button button1 btn-outline-black btn-link">الإعتمادات</button>
+                              <button class="button button1 btn-outline-black btn-link" (click)="goto1()">الإعتمادات</button>
                   
-                              <button class="button button3 btn-outline-black btn-link" >المأمورية</button>
+                              <button class="button button3 btn-outline-black btn-link"(click)="goto2()" >المأمورية</button>
               
-                              <button class="button button2 btn-outline-black btn-link" >المنتغعين</button>
+                              <button class="button button2 btn-outline-black btn-link"(click)="goto3()" >المنتغعين</button>
 
                 </ng-sidebar>
 

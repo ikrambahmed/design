@@ -1,69 +1,84 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { missionnaire } from '../models/missionnaire';
 import { grade } from '../models/grade';
+import { environment } from '../shared/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MissionnaireService {
-
-  readonly Url='http://localhost:8080/api' ;
-  readonly Ul='http://localhost:8080/api/missionaire' ;
-
-  readonly l = 'http://localhost:8080/api/add' ; 
-  readonly rootUrL='http://localhost:8080/api/allGrade' ; 
-
-  readonly rootUrl='http://localhost:8080' ; 
-  readonly root = 'http://localhost:8080/api/missionaire/lista' ; 
   grades:grade[] ; 
   missionnaires : missionnaire[] ; 
-  
-  constructor(private http : HttpClient){
-  }
-  getMissionares():Observable<any> {
-    return this.http.get(this.Ul) ; 
-  }
+  baseUrl = environment.baseUrl;
 
+  constructor(private http : HttpClient){
+
+  }
+  getMissionares(codeDept:String):Observable<any> {
+    console.log("err") ; 
+    return this.http.get(this.baseUrl+'/api/listeMissionnaireByDept?codeDept='+codeDept); 
+  }
+  cod :String ; 
   loadMissionaire()
-  {this.getMissionares().subscribe(
+
+  {
+    var DeptGenVal = localStorage.getItem('deptGen') ; 
+    var data = JSON.parse(DeptGenVal) ; 
+    console.log('retrievedObject: ',data.code) ;
+    this.cod=data.code ;
+    this.getMissionares(this.cod).subscribe(
     data => { this.missionnaires=data},
     error => {console.log(error) } , 
     () => {console.log('loading missionnaires was done ')}
   )}
   addMissionnaire( miss : missionnaire) : Observable<any>{
     console.log('fi west el service') ; 
-    return this.http.post(this.l ,miss  ) ; 
+    return this.http.post(this.baseUrl+'/api/add',miss  ) ; 
  
   }
   updateMissionnaire(miss : missionnaire ): Observable<any> {
-    return this.http.put(this.Url ,miss) ;
+    return this.http.put(this.baseUrl+'/api',miss) ;
   }
 
   deleteMissionnaire(cin : String) : Observable<any>{
-   return this.http.delete(this.Url+ `/${cin}`) ; 
+   return this.http.delete(this.baseUrl+'/api'+`/${cin}`) ; 
   }
   getGrade():Observable<any> 
-  { return this.http.get(this.rootUrL) ; 
+  { return this.http.get(this.baseUrl+'/api/allGrade') ; 
   }
   
   getfonctions():Observable<any> 
   {console.log('dkhalna lil fonctions')
-    return this.http.get('http://localhost:8080/api/listfonction'); }
+    return this.http.get(this.baseUrl+'/api/listfonction'); }
   
   getClasses():Observable<any> 
   {
-    return this.http.get('http://localhost:8080/api/listclasse') ; 
+    return this.http.get(this.baseUrl+'/api/allClasse') ; 
   }
+  public getToken():string {
+    return localStorage.getItem('token');
+  }
+
   getCategories():Observable<any> 
-  {
-    return this.http.get(this.rootUrl+'/api/all') ; 
+  {    
+    var jsonObject : any = JSON.parse(this.getToken()) ; 
+  
+const httpOptions = {
+     headers: new HttpHeaders({
+     'Authorisation': 'Token '+jsonObject 
+    })
+};
+console.log('Token '+jsonObject) ; 
+    return this.http.get('http://localhost:8080/rest/listcategorie/allcat') ; 
+  
   }
+
   getgroupes():Observable<any> 
   {
-    return this.http.get(this.rootUrl+'/api/listgroupe') ; 
+    return this.http.get(this.baseUrl+'/api/listgroupe') ; 
   }
 /* getOneGrade(lib : String):Observable<any>
  {
@@ -71,6 +86,11 @@ export class MissionnaireService {
 }*/
 
 getOneMiss(cin : String) : Observable<any>{
-  return this.http.get('http://localhost:8080/api/lista?cin='+cin) ; 
+  return this.http.get(this.baseUrl+'/api/getOneMiss?cin='+cin) ; 
  }
+ getDept(cin:String):Observable<any> 
+ {
+   return this.http.get('http://localhost:8080/miss_cni-0.0.1-SNAPSHOT/api/DeptOfUsername?username=11406260'+cin) ; 
+ }
+
 }

@@ -6,6 +6,8 @@ import { PrincipalState } from '../shared/principal.state';
 import { Principal } from '../shared/principal.model';
 import { HomeService } from '../services/home.service';
 import { DeptGen } from '../models/DeptGen';
+import { MissionService } from '../services/mission.service';
+import { MissionnaireService } from '../services/missionnaire.service';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +20,11 @@ export class HomeComponent implements OnInit {
   private principal : Principal ; 
   private authenticat : boolean ; 
   private cin_user : String ; 
-  constructor(private appService : AppService,private router : Router,
-    private store : Store<PrincipalState> , private homeService : HomeService) { }
+  constructor(private appService : AppService,private router : Router, private missionnaireService : MissionnaireService
+    ,private store : Store<PrincipalState> , private homeService : HomeService) { }
   ngOnInit() {
   this.store.select('principal').subscribe(principal =>{
-    //console.log('principal authorities') ; 
-   // console.log(principal) ; 
+  
     this.principal = principal ;
   }) ; 
   this.cin_user = localStorage.getItem('username');
@@ -72,7 +73,7 @@ export class HomeComponent implements OnInit {
 
   DeptOfUsername(){
     console.log("dkhalna lfonctions dept")
-    this.homeService.getDept(this.cin_user).subscribe(
+    this.missionnaireService.getDept(this.cin_user).subscribe(
       data => { this.dept=data;
       
         let key = 'deptGen';

@@ -7,8 +7,7 @@ export class XHrInterceptor implements HttpInterceptor{
     constructor(private cookieService : CookieService)
     {}
     intercept(req : HttpRequest<any> , next : HttpHandler)
-    {
-        const token = this.cookieService.get('token') ; 
+    { const token = this.cookieService.get('token') ; 
          const xhr = req.clone({
         headers : req.headers.set('authorization',`Basic ${token}`)
 

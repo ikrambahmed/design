@@ -9,7 +9,7 @@ export class mission {
 	public objetl: String;
 	public datdepP: Date;
 	public datarrP: Date;
-//	public motcle: Motcle;
+	public motcle: Motcle;
 	
 	constructor(
 		numMission?:String , 
@@ -18,10 +18,10 @@ export class mission {
 		objetl?: String,
 		datdepP?: Date,
 		datarrP?: Date,
-		//motcle?: Motcle
+		motcle?: Motcle
 	) 
 	{
-		//this.motcle = new Motcle();
+		this.motcle = new Motcle();
 		
 	}
 }

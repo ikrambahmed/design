@@ -30,13 +30,12 @@ export class ListeMissionComponent implements OnInit {
     this.router.navigateByUrl('/mission');
     }
 
-  getMissions():Observable<any> {
-    return this.http.get(this.url) ; 
-  }
+ 
   
   loadMissions()
-  {this.getMissions().subscribe(
+  {this.missionService.getMissions(this.cod).subscribe(
    list => { 
+     console.log('missions loading') ; 
      this.missions=list ;
      this.totalRec = this.missions.length;
 
@@ -51,10 +50,15 @@ export class ListeMissionComponent implements OnInit {
 
   //@ViewChild(MatPaginator) paginator: MatPaginator;
   //dataSource = new MatTableDataSource<any>(this.missions);
+  cod : String ; 
   ngOnInit() {
-    this.loadMissions() ;
    // console.log(this.dataSource) ; 
    // this.dataSource.paginator = this.paginator;
+   var DeptGenVal = localStorage.getItem('deptGen') ; 
+   var data = JSON.parse(DeptGenVal) ; 
+   console.log('retrievedObject: ',data.code) ;
+   this.cod=data.code ;
+   this.loadMissions() ;
 
   }
 }

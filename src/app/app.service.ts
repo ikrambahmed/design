@@ -4,16 +4,24 @@ import { CookieService } from 'ngx-cookie-service';
 import { Store } from '@ngrx/store';
 import { PrincipalState } from './shared/principal.state';
 import { SAVE_PRINCIPAL } from './shared/save.principal.action';
+import { environment } from './shared/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class AppService {
   response ; 
   authenticated: boolean = false;
+  baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
       private cookieService: CookieService, 
       private store :Store<PrincipalState> ) { }
+      
+    createToken(m) : Observable<any>{
+        console.log('fi west el service createToken') ; 
+        return this.http.post('http://localhost:8080/token',m,{responseType: 'text'}) ; 
+      } 
 
   authenticate(credentials, callback) {
     if(credentials){
@@ -21,7 +29,7 @@ export class AppService {
       const token = btoa(credentials.username + ':' + credentials.password);
       this.cookieService.set('token',token);
 
-      this.http.get('http://localhost:8080/api/user').subscribe(response => {
+      this.http.get(this.baseUrl+'/api/user').subscribe(response => {
          if (response && response['name']) {
             console.log(response);
             //this.response=response; 

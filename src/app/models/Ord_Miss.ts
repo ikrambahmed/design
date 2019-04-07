@@ -1,5 +1,5 @@
 
-export class groupe {
+export class ordMiss {
     constructor(public num_ord? :Number ,
     public  Date_depart?:Date , 
 	public  Date_arrivee?:Date ,

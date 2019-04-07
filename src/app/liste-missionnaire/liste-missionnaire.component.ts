@@ -8,7 +8,7 @@ import { MissionnaireService } from '../services/missionnaire.service';
   styleUrls: ['./liste-missionnaire.component.css']
 })
 export class ListeMissionnaireComponent implements OnInit {
-
+  cod : String ;
   missionnaires: missionnaire[] ;
   searchText;
 
@@ -19,6 +19,10 @@ export class ListeMissionnaireComponent implements OnInit {
   selectedMissionnaire : missionnaire ; 
   ngOnInit() {
    this.initMiss() ;
+   var DeptGenVal = localStorage.getItem('deptGen') ; 
+   var data = JSON.parse(DeptGenVal) ; 
+   console.log('retrievedObject: ',data.code) ;
+   this.cod=data.code ;
 
   this.loadMissionaire() ;  }
   
@@ -32,7 +36,7 @@ export class ListeMissionnaireComponent implements OnInit {
     
   }
   loadMissionaire()
-  {this.missionnaireService.getMissionares().subscribe(
+  {this.missionnaireService.getMissionares(this.cod).subscribe(
     data => { this.missionnaires=data},
     error => {console.log('an error occured') } , 
     () => {console.log('loading missions was done ')}

@@ -8,7 +8,32 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-readonly rootUrl='http://localhost:8080' ; 
+
+  constructor(private http: HttpClient) {
+  }
+    
+  login(email:string, password:string ) {
+      return this.http.post<User>('/api/login', {email, password}) ;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*readonly rootUrl='http://localhost:8080' ; 
   constructor(private http: HttpClient) {
   }
     
@@ -30,6 +55,6 @@ console.log('service') ;
 var reqHeader = new HttpHeaders({ "content-type": "application/x-www-form-urlencoded",
     "cache-control": "no-cache"}) ; 
 return this.http.post(this.rootUrl+'/token',data,{headers:reqHeader}) ; 
-}
+}*/
 
 }

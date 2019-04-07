@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BarComponent } from './bar/bar.component';
 import { AjoutMissionComponent } from './ajout-mission/ajout-mission.component';
 import { HMissionComponent } from './h-mission/h-mission.component';
+import { FraisMissionComponent } from './frais-mission/frais-mission.component';
 
 const routes: Routes = [
   {path :'login' , component : LoginComponent} , 
@@ -27,7 +28,8 @@ const routes: Routes = [
     {path:'navbar',component:NavbarComponent} , 
     {path:'bar',component:BarComponent} ,
     {path:'ajout',component:AjoutMissionComponent} , 
-    {path:'h-mission', component: HMissionComponent}
+    {path:'h-mission', component: HMissionComponent} , 
+    {path:'frais' , component:FraisMissionComponent}
 
 
 ];

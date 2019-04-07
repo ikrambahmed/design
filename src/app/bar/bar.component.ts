@@ -17,7 +17,7 @@ export class BarComponent implements OnInit {
   username:string;
   depart:String="" ; 
   dep:DeptGen = new DeptGen();
-  constructor(public route:Router, private homeService : HomeService) {  }
+  constructor(public router:Router, private homeService : HomeService) {  }
   ngOnInit(){
   
    // this.nav.knowUser(this.user);
@@ -30,10 +30,18 @@ export class BarComponent implements OnInit {
    this.depart=data.libA;
   }
   
- goTo()
+ goto1()
  {
- this.msg='on' ; 
- }
+  this.router.navigateByUrl('/bar');
+}
+goto2()
+ {
+  this.router.navigateByUrl('/h-mission');
+}
+goto3()
+{
+this.router.navigateByUrl('/home')
+}
 
  DeptOfUsername(){
   console.log("dkhalna lfonctions dept")

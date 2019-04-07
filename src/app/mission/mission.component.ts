@@ -10,9 +10,10 @@ import { Motcle } from '../models/Motcle';
   styleUrls: ['./mission.component.css']
 })
 export class MissionComponent implements OnInit {
-mission: mission ; 
- cod : String ;
-codeMission : String ; 
+  
+  mission: mission ; 
+  cod : String ;
+  codeMission : String ; 
   missionForm:FormGroup;
   date_debut:Date ; 
   currentYea: number;
@@ -34,8 +35,6 @@ codeMission : String ;
      () => {console.log('loading motcles was done ')}
    )}
 
-
-
   ngOnInit() {
     this.mission=new mission() ; 
     this.currentYea = (new Date()).getFullYear() ; 
@@ -49,7 +48,7 @@ codeMission : String ;
     console.log('d'+this.d) ; 
     console.log('year'+this.year) ; 
     console.log('y'+this.y) ; 
-    this. reloadCode() ; 
+    this.reloadCode() ; 
   }
   createForm()
   {
@@ -61,9 +60,10 @@ codeMission : String ;
       objetl: ['',Validators.required],
       datdepP: ['',Validators.required],
       datarrP : ['',Validators.required],
-     // motcle :  ['',Validators.required] , 
+      motcle :  ['',Validators.required] , 
   });
   }
+
   add(){
     const m = this.missionForm.value ;
     alert(JSON.stringify(m));
@@ -71,12 +71,19 @@ codeMission : String ;
       res => {
         this.mission=res ; 
           console.log("donne") ;   
+
+          let key = 'num_mission';
+
+          localStorage.setItem(key, JSON.stringify(this.codeMission));
+          this.reloadCode() ; 
+          this.createForm() ; 
          },
          error=>{console.log("erreur");}    
     )
   }
+
   reloadCode(){
-this.missionService.getLatestMissionCode(this.cod).subscribe(
+  this.missionService.getLatestMissionCode(this.cod).subscribe(
   d=>{
     if((d==null) || (d==undefined) || (d.length ==0 ))
     {
