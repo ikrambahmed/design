@@ -14,6 +14,9 @@ import { BarComponent } from './bar/bar.component';
 import { AjoutMissionComponent } from './ajout-mission/ajout-mission.component';
 import { HMissionComponent } from './h-mission/h-mission.component';
 import { FraisMissionComponent } from './frais-mission/frais-mission.component';
+import { BudgetDeptComponent } from './budget-dept/budget-dept.component';
+import { BudgetProjComponent } from './budget-proj/budget-proj.component';
+import { ProjetComponent } from './projet/projet.component';
 
 const routes: Routes = [
   {path :'login' , component : LoginComponent} , 
@@ -29,7 +32,11 @@ const routes: Routes = [
     {path:'bar',component:BarComponent} ,
     {path:'ajout',component:AjoutMissionComponent} , 
     {path:'h-mission', component: HMissionComponent} , 
-    {path:'frais' , component:FraisMissionComponent}
+    {path:'frais' , component:FraisMissionComponent},
+    {path:'budgetDept' , component:BudgetDeptComponent} , 
+    {path:'budgetProj', component:BudgetProjComponent} ,
+    {path:'projet', component:ProjetComponent}
+
 
 
 ];

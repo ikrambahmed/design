@@ -17,17 +17,17 @@ export class BarComponent implements OnInit {
   username:string;
   depart:String="" ; 
   dep:DeptGen = new DeptGen();
-  constructor(public router:Router, private homeService : HomeService) {  }
+  constructor(public router:Router, private homeService : HomeService) {   }
   ngOnInit(){
-  
+    this.cin_user = localStorage.getItem('username');
+    console.log("username: "+this.cin_user) ; 
+    this.DeptOfUsername() ; 
+    var DeptGenVal = localStorage.getItem('deptGen') ; 
+    var data = JSON.parse(DeptGenVal) ; 
+    console.log('libelee arabe ',data.libA) ;
+    this.depart=data.libA;
    // this.nav.knowUser(this.user);
-   this.cin_user = localStorage.getItem('username');
-   console.log("username: "+this.cin_user) ; 
-   this.DeptOfUsername() ; 
-   var DeptGenVal = localStorage.getItem('deptGen') ; 
-   var data = JSON.parse(DeptGenVal) ; 
-   console.log('libelee arabe ',data.libA) ;
-   this.depart=data.libA;
+  
   }
   
  goto1()
@@ -44,13 +44,12 @@ this.router.navigateByUrl('/home')
 }
 
  DeptOfUsername(){
+
   console.log("dkhalna lfonctions dept")
   this.homeService.getDept(this.cin_user).subscribe(
     data => { this.dept=data;
-    
       let key = 'deptGen';
       localStorage.setItem(key, JSON.stringify(this.dept));
-
     }
   ,
     error => {console.log(error); } , 

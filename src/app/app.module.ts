@@ -42,6 +42,9 @@ import { HMissionComponent } from './h-mission/h-mission.component';
 import { AuthService } from './services/auth.service';
 import { FraisMissionComponent } from './frais-mission/frais-mission.component';
 import { TokenInterceptor } from './shared/TokenInterceptor';
+import { BudgetDeptComponent } from './budget-dept/budget-dept.component';
+import { BudgetProjComponent } from './budget-proj/budget-proj.component';
+import { ProjetComponent } from './projet/projet.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { TokenInterceptor } from './shared/TokenInterceptor';
     MenuComponent,
     AjoutMissionComponent,
     HMissionComponent,
-    FraisMissionComponent],
+    FraisMissionComponent,
+    BudgetDeptComponent,
+    BudgetProjComponent,
+    ProjetComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -82,10 +88,10 @@ import { TokenInterceptor } from './shared/TokenInterceptor';
   schemas: [ NO_ERRORS_SCHEMA ],
 
   providers: [ CookieService,MissionnaireService,ListeMissionnaireService,MissionService, HomeService,AuthService,AppService , 
-    //{provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor  , multi : true } , 
-    {provide: HTTP_INTERCEPTORS,
+    {provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor  , multi : true } , 
+   /* {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi: true}
+    multi: true}*/
   ],
     bootstrap: [AppComponent]
 })

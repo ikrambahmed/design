@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ordMiss } from '../models/Ord_Miss';
 import { environment } from '../shared/environment';
+import { budget } from '../models/budget';
+import { budgetProjet } from '../models/budgetProjet';
+import { Projet } from '../models/Projet';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +18,17 @@ export class MissionService {
   missions : mission[];
   constructor(private http : HttpClient) { }
 
+  getProjet(dept : String ) : Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listeProjetByDept?codeDept='+dept) ; 
+  }
+  getOneMiss(cin : String) : Observable<any>{
+    return this.http.get(this.baseUrl+'/api/getOneMiss?cin='+cin) ; 
+   }
   getMissions(codeDept: String):Observable<any> {
     return this.http.get(this.baseUrl+'/api/mission/listeMissionByDept?codeDept='+codeDept) ; 
   }
 
-  addOrdMiss(o : ordMiss)    : Observable<any> {
+  addOrdMiss(o:ordMiss):Observable<any> {
     
     return this.http.post(this.baseUrl+'/api/addordMiss',o  ) ; 
   }
@@ -35,5 +44,33 @@ export class MissionService {
 
   getLatestMissionCode(code : String) :Observable<any>{
     return this.http.get(this.baseUrl+'/api/mission/latestMissionCode?codeDept='+code) ; 
+  }
+  getPays() :Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listPays') ; 
+  }
+  getBudget(code :String) :Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listbyDept?codeDept='+code) ; 
+  }
+  addBudgetDept(m :budget):Observable<any>{
+    return this.http.post('http://localhost:8080/miss_cni-0.0.1-SNAPSHOT/api/addBudget' , m) ; 
+
+  }
+  addBudgetProj(m :budgetProjet):Observable<any>{
+    return this.http.post(this.baseUrl+'/api/addBProjet', m) ; 
+  }
+  addProjet( p:Projet):Observable<any> {
+    return this.http.post(this.baseUrl+'/api/addProjet', p) ;
+  }
+
+  getLatestProjetCode(code : String) : Observable<any>{
+    return this.http.get(this.baseUrl+'/api/latestProjetCode?codeDept='+code) ;
+  }
+
+  getBudgets(code:String): Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listbyDept?codeDept='+code) ;
+  }
+  getBudgetsProjet(code:String):Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listBudgetProjetbydept?codeDept='+code) ; 
+
   }
 }

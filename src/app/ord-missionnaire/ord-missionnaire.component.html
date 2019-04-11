@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<app-navbar></app-navbar>
+<div *ngIf="show1==false">
 
 <div class="container" style="margin-bottom:10%" >
 
@@ -18,6 +20,12 @@
         <div class="card-body ">
 
           <form [formGroup]="OrdMissForm" #f="ngForm">
+              <div class="row" dir="rtl">
+                  <div class="form-group col-md-4 text-right">
+                      <label>المامورية رقم</label>
+                      <h4><span class = "label label-default">{{num_miss}}/{{cod}}</span></h4>
+               </div>
+              </div>
             <div class="row">
               <div class="form-group col-md-6 text-right">
                 <button class="btn btn-success" (click)="Search(cin)">
@@ -31,23 +39,20 @@
 
             <div *ngIf="existe==true">
               <div class="row">
-                <input type="textbox" class="form-control" formControlName="num_mission" required [(ngModel)]="num_miss" hidden >
-                <input type="textbox" class="form-control" formControlName="num_ordMiss" required [(ngModel)]="num_ordMiss" hidden >
+                <input type="textbox" class="form-control" formControlName="numMission" required [(ngModel)]="num_miss" hidden >
+                <input type="textbox" class="form-control" formControlName="numord" required [(ngModel)]="num_ordMiss" hidden >
                 <input type="textbox" class="form-control" formControlName="code" required [(ngModel)]="cod" hidden >
 
-                <div class="form-group col-md-6 text-right">
+                <div class="col-md-6 text-right">
                   <label>اللقب </label>
-                  <input type="textbox" required [(ngModel)]="nom">
+                  <label >{{nom}}  </label>
                 </div>
-                <div class="form-group col-md-6 text-right">
+                <div class="col-md-6 text-right">
                   <label>الإسم </label>
-                  <input type="textbox" required [(ngModel)]="prenom">
+                  <label >{{prenom}}  </label>
                 </div>
               </div>
               <div class="row">
-
-               
-
                 <div class="form-group col-md-6 text-right">
                   <label>تاريخ الإياب </label>
                   <input type="date" class="form-control" formControlName="datarrP" required
@@ -155,3 +160,7 @@
     </form>
   </div>
 </div>-->
+</div>
+<div *ngIf="show1==true">
+<app-frais-mission></app-frais-mission>
+</div>

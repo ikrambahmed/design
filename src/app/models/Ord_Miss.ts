@@ -1,10 +1,18 @@
+import { mission } from './mission';
+import { DeptGen } from './DeptGen';
+import { missionnaire } from './missionnaire';
 
 export class ordMiss {
-    constructor(public num_ord? :Number ,
-    public  Date_depart?:Date , 
-	public  Date_arrivee?:Date ,
-	public  tot_mission?:Number ,
-    public  tot_transport?:Number
+    constructor(public numord? :Number ,
+        public numMission?:mission , 
+        public code ?: DeptGen ,
+    public  datarrP?:Date , 
+	public  datdepP?:Date ,
+	public  cin?:missionnaire ,
     )
-    {} 
+    {
+        this.code = new DeptGen() ; 
+        this.numMission = new mission() ; 
+        this.cin= new missionnaire() ; 
+    } 
 }

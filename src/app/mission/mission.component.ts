@@ -3,6 +3,7 @@ import { FormGroup, FormArray, FormBuilder,Validators,ReactiveFormsModule  } fro
 import { MissionService } from '../services/mission.service';
 import { mission } from '../models/mission';
 import { Motcle } from '../models/Motcle';
+import { budget } from '../models/budget';
 
 @Component({
   selector: 'app-mission',
@@ -10,7 +11,10 @@ import { Motcle } from '../models/Motcle';
   styleUrls: ['./mission.component.css']
 })
 export class MissionComponent implements OnInit {
-  
+  Avoirbudg:Boolean ; 
+  show : Boolean  ; 
+  datdepP:Date ; 
+  datarrP:Date ; 
   mission: mission ; 
   cod : String ;
   codeMission : String ; 
@@ -34,9 +38,46 @@ export class MissionComponent implements OnInit {
      error => {console.log(error); } , 
      () => {console.log('loading motcles was done ')}
    )}
+budgets : budget[] ; 
+loadBudgets()
+{this.missionService.getBudgets(this.cod).subscribe(
+  data => { this.budgets=data;
+  console.log('length',data.length) ;
+if((data.length==0)||(data==null) || (data==undefined)){
+  this.Avoirbudg=false ; 
+  console.log(this.Avoirbudg) ;
+
+}
+else
+this.Avoirbudg=true ;
+console.log(this.Avoirbudg) ;
+},
+  error => {console.log(error); } , 
+  () => {console.log('loading budgets was done ')}
+)}
+Avoirbudgproj:Boolean ; 
+budgetsProjet:budget[] ; 
+loadBudgetsProjet()
+{this.missionService.getBudgetsProjet(this.cod).subscribe(
+  data => { this.budgetsProjet=data;
+    console.log(data.length) ; 
+    if((data.length==0)||(data==null) || (data==undefined)){
+      this.Avoirbudgproj=false ; 
+      
+      console.log('budproj',this.Avoirbudgproj) ;
+    
+    }
+    else
+    this.Avoirbudgproj=true ;
+    console.log('budproj',this.Avoirbudgproj) ;
+  },
+  error => {console.log(error); } , 
+  () => {console.log('loading budgets was done ')}
+)}
+
 
   ngOnInit() {
-    this.mission=new mission() ; 
+    //this.mission=new mission() ; 
     this.currentYea = (new Date()).getFullYear() ; 
     this.strr=this.currentYea.toString() ;
     this.loadMotcle() ;
@@ -49,6 +90,11 @@ export class MissionComponent implements OnInit {
     console.log('year'+this.year) ; 
     console.log('y'+this.y) ; 
     this.reloadCode() ; 
+    this.show=true ; 
+    this.loadBudgets() ; 
+    this.loadBudgetsProjet() ; 
+
+
   }
   createForm()
   {
@@ -71,12 +117,19 @@ export class MissionComponent implements OnInit {
       res => {
         this.mission=res ; 
           console.log("donne") ;   
-
           let key = 'num_mission';
+          localStorage.setItem(key,this.missionForm.get('numMission').value);
+          let key1 = 'datdepP';
 
-          localStorage.setItem(key, JSON.stringify(this.codeMission));
+          localStorage.setItem(key1, JSON.stringify(this.datdepP));
+          let key2 = 'datarrP';
+
+          localStorage.setItem(key2, JSON.stringify(this.datarrP));
+
           this.reloadCode() ; 
           this.createForm() ; 
+          this.ngOnInit();
+          this.show=false ;
          },
          error=>{console.log("erreur");}    
     )
@@ -89,7 +142,7 @@ export class MissionComponent implements OnInit {
     {
       this.codeMission=this.y+"0001" ; 
       console.log('codeMissioNLOad'+this.codeMission) ; 
-
+    
     }
     else 
     {
@@ -97,6 +150,12 @@ export class MissionComponent implements OnInit {
       console.log('codeMissioNLOad'+this.codeMission) ; 
 
     }
+    let key = 'num_mission';
+ //  localStorage.setItem(key,JSON.stringify(this.codeMission));
+  // localStorage.setItem(key,this.missionForm.get('numMission').value);
+  //console.log('codeeee',this.missionForm.get('numMission').value);
+
+
 
   }) ; 
 }

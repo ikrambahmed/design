@@ -21,25 +21,27 @@ export class HomeComponent implements OnInit {
   private authenticat : boolean ; 
   private cin_user : String ; 
   constructor(private appService : AppService,private router : Router, private missionnaireService : MissionnaireService
-    ,private store : Store<PrincipalState> , private homeService : HomeService) { }
+    ,private store : Store<PrincipalState> , private homeService : HomeService) {
+    
+     }
   ngOnInit() {
-  this.store.select('principal').subscribe(principal =>{
+    this.store.select('principal').subscribe(principal =>{
+      this.principal = principal ;
+    }) ; 
+    this.cin_user = localStorage.getItem('username');
+    console.log("username: "+this.cin_user) ; 
+    this.DeptOfUsername() ; 
+    var DeptGenVal = localStorage.getItem('deptGen') ; 
+    var data = JSON.parse(DeptGenVal) ; 
+    console.log('libelee arabe ',data.libA) ;
   
-    this.principal = principal ;
-  }) ; 
-  this.cin_user = localStorage.getItem('username');
-  console.log("username: "+this.cin_user) ; 
-  this.DeptOfUsername() ; 
-  var DeptGenVal = localStorage.getItem('deptGen') ; 
-  var data = JSON.parse(DeptGenVal) ; 
-  console.log('libelee arabe ',data.libA) ;
-
   }
 
   onShowSideBarChange(showHideSideBar){
     this.showHideSideBar = showHideSideBar;
   }
   logout(){
+    localStorage.clear();
     this.appService.logout(()=>{
       this.router.navigateByUrl('/login');
     });
