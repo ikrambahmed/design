@@ -3,7 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MissionService } from '../services/mission.service';
 import { mission } from '../models/mission';
 import { budget } from '../models/budget';
-import { pays } from '../models/pays';
+import { Pays } from '../models/pays';
+import { Projet } from '../models/Projet';
+import { TypeFrais } from '../models/typeFrais';
+import { error } from 'util';
 
 @Component({
   selector: 'app-frais-mission',
@@ -15,7 +18,7 @@ export class FraisMissionComponent implements OnInit {
   op:Boolean ; 
   checked:Boolean ; 
   OrdMissForm:FormGroup ; 
-  payss: pays[] ; 
+  payss: Pays[] ; 
   cod :String;
   val_miss:Number; 
   val_trans:Number; 
@@ -24,14 +27,15 @@ val_mission :String ;
 valeur_trans : String ; 
 valeur_budget : Number ; 
 val_budget:String ; 
-  toggleEditable(event) {
-    if ( event.target.checked ) {
-        this.op= true;
-    
-   }
- else
-     {this.op=false ;    }
-}
+projets: Projet[] ; 
+radioProjet:Boolean ; 
+typeFrais : TypeFrais [] ; 
+public supportes:Array<string> = [
+ 'التحمل على الحساب الخاص' ,
+ 'التحمل على الهيكل المعني'
+];
+
+
 
   constructor(private fb : FormBuilder ,private  missionService : MissionService) { 
    
@@ -39,9 +43,10 @@ val_budget:String ;
       numMission: ['',Validators.required],
       numord: ['',Validators.required],
       cin  :['',Validators.required],
+      code:['',Validators.required] ,
       codPays:['',Validators.required],
-     //valeur:['',Validators.required],
-     //valeurR:['',Validators.required],
+     valeurP:['',Validators.required],
+     valeurR:['',Validators.required],
      //supporte:['',Validators.required],
       codPrj:['',Validators.required],
       //observ:['',Validators.required],
@@ -51,7 +56,38 @@ val_budget:String ;
     }) ; 
   }
 
- 
+
+  add(){
+    console.log(this.OrdMissForm.value) ; 
+    const m = this.OrdMissForm.value ;
+    alert(JSON.stringify(m));
+    this.missionService.addFrais(m).subscribe(
+      res => {
+        alert(JSON.stringify(res));
+      }
+    )
+  }  
+
+
+
+
+  toggleRadio(event) {
+    if ( event.target.checked) {
+      this.radioProjet=true;
+    
+   }
+ else
+     {this.radioProjet=false ;}
+}
+  toggleEditable(event) {
+    if ( event.target.checked ) {
+        this.op= true;
+    
+   }
+ else
+     {this.op=false ;    }
+}
+
 loadBudget(cod : String){this.missionService.getBudget(this.cod).subscribe(
     data => { this.budget_mission=data;
     console.log(this.budget_mission) ;
@@ -73,7 +109,46 @@ loadBudget(cod : String){this.missionService.getBudget(this.cod).subscribe(
     error => {console.log(error); } , 
     () => {console.log('loading pays was done ')}
   )}
+  loadTypeFrais()
+  {this.missionService.getTypeFrais().subscribe(
+    data => { this.typeFrais=data;
+    console.log(data);},
+    error => {console.log(error); } , 
+    () => {console.log('loading frais was done ')}
+  )}
+
+ 
+loadProjets()
+  {this.missionService.getProjet(this.cod).subscribe(
+    data => { this.projets=data;},
+    error => {console.log(error); } , 
+    () => {console.log('loading projets was done ');}
+  )}
+  num_ord:String ;
+  codeMission:String ; 
+  username:String ;
+ 
+  private fieldArray: Array<any> = [];
+  private newAttribute: any = {};
+
+  addFieldValue() {
+      this.fieldArray.push(this.newAttribute)
+      this.newAttribute = {};
+  }
+
+  deleteFieldValue(index) {
+      this.fieldArray.splice(index, 1);
+  }
+
   ngOnInit() {
+    this.codeMission = JSON.parse(localStorage.getItem('num_mission')) ;
+    console.log('noum Mission',this.codeMission);   
+    this.num_ord = JSON.parse(localStorage.getItem('numOrd')) ;
+    console.log('numOrd',this.num_ord);   
+    this.username = localStorage.getItem('cin');
+    console.log("username: "+this.username) ; 
+
+
     var DeptGenVal = localStorage.getItem('deptGen') ; 
     var data = JSON.parse(DeptGenVal) ; 
     console.log('retrievedObject:',data.code);
@@ -82,6 +157,8 @@ loadBudget(cod : String){this.missionService.getBudget(this.cod).subscribe(
     this.loadBudget(this.cod) ;
     this.numMission=JSON.parse(localStorage.getItem('num_mission'));
     console.log('op',this.op) ; 
+    this.loadProjets() ; 
+    this.loadTypeFrais() ; 
   }
 
 }

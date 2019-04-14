@@ -4,7 +4,8 @@ import { missionPK } from './missionPK';
 
 export class mission {
 	public numMission: String;
-	public code:DeptGen ; 
+	public code : String ; 
+	public deptGen:DeptGen ; 
 	public objeta: String;
 	public objetl: String;
 	public datdepP: Date;
@@ -13,7 +14,8 @@ export class mission {
 	
 	constructor(
 		numMission?:String , 
-		code  ?:DeptGen,
+		code  ?:String,
+		deptGen ?: DeptGen,
 		objeta?: String,
 		objetl?: String,
 		datdepP?: Date,
@@ -21,6 +23,7 @@ export class mission {
 		motcle?: Motcle
 	) 
 	{
+		this.deptGen=new DeptGen() ; 
 		this.motcle = new Motcle();
 		
 	}

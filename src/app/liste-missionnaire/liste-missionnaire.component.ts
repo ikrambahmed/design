@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { missionnaire } from '../models/missionnaire';
+import { Missionnaire } from '../models/missionnaire';
 import { MissionnaireService } from '../services/missionnaire.service';
 
 @Component({
@@ -9,14 +9,14 @@ import { MissionnaireService } from '../services/missionnaire.service';
 })
 export class ListeMissionnaireComponent implements OnInit {
   cod : String ;
-  missionnaires: missionnaire[] ;
+  missionnaires: Missionnaire[] ;
   searchText;
 
   @Input() msg ;
   constructor(private missionnaireService : MissionnaireService) { }
 
   operation: string ;
-  selectedMissionnaire : missionnaire ; 
+  selectedMissionnaire : Missionnaire ; 
   ngOnInit() {
    this.initMiss() ;
    var DeptGenVal = localStorage.getItem('deptGen') ; 
@@ -45,7 +45,7 @@ export class ListeMissionnaireComponent implements OnInit {
   }
   initMiss()
 {
-  this.selectedMissionnaire= new missionnaire() ; 
+  this.selectedMissionnaire= new Missionnaire() ; 
   
 }}
 

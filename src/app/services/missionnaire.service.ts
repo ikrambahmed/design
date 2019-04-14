@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { missionnaire } from '../models/missionnaire';
+import { Missionnaire } from '../models/missionnaire';
 import { grade } from '../models/grade';
 import { environment } from '../shared/environment';
 
@@ -11,7 +11,7 @@ import { environment } from '../shared/environment';
 
 export class MissionnaireService {
   grades:grade[] ; 
-  missionnaires : missionnaire[] ; 
+  missionnaires : Missionnaire[] ; 
   baseUrl = environment.baseUrl;
 
   constructor(private http : HttpClient){
@@ -34,12 +34,12 @@ export class MissionnaireService {
     error => {console.log(error) } , 
     () => {console.log('loading missionnaires was done ')}
   )}
-  addMissionnaire( miss : missionnaire) : Observable<any>{
+  addMissionnaire( miss : Missionnaire) : Observable<any>{
     console.log('fi west el service') ; 
     return this.http.post(this.baseUrl+'/api/add',miss  ) ; 
  
   }
-  updateMissionnaire(miss : missionnaire ): Observable<any> {
+  updateMissionnaire(miss : Missionnaire ): Observable<any> {
     return this.http.put(this.baseUrl+'/api',miss) ;
   }
 

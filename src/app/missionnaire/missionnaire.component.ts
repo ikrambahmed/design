@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MissionnaireService } from '../services/missionnaire.service';
-import { missionnaire } from '../models/missionnaire';
+import { Missionnaire } from '../models/missionnaire';
 import { FormGroup, FormArray, FormBuilder,Validators,ReactiveFormsModule  } from '@angular/forms';
 import { grade } from '../models/grade';
 import { fonction } from '../models/fonction';
 import { categorie } from '../models/categorie';
 import { groupe } from '../models/groupe';
 import { classe } from '../models/classe';
+import { DeptGen } from '../models/DeptGen';
 @Component({
   selector: 'app-missionnaire',
   templateUrl: './missionnaire.component.html',
@@ -68,7 +69,7 @@ butonMsg ;
     error => {console.log(error); } , 
     () => {console.log('loading groupes was done ')}
   )}
- 
+ cod:DeptGen ;
   ngOnInit() {
     this.loadgrade(); 
     this.loadcateg(); 
@@ -76,6 +77,12 @@ butonMsg ;
     this.loadgroupe(); 
     this.loadclasse(); 
     this.loadfonction();
+
+    var DeptGenVal = localStorage.getItem('deptGen') ; 
+    var data = JSON.parse(DeptGenVal) ; 
+    console.log('retrievedObject:',data.code) ;
+    this.cod=data ;
+  
 }
 createForm()
 {
@@ -101,12 +108,13 @@ createForm()
     classgrd: ['',Validators.required],
     codCat : ['',Validators.required],
     groupe: ['',Validators.required],
+    code : ['',Validators.required]
     //dept: ['',Validators.required]
 });
 }
   initMiss()
   { 
-    this.selectedMissionnaire= new missionnaire() ; 
+    this.selectedMissionnaire= new Missionnaire() ; 
     this.createForm(); 
   }
   update() {
@@ -122,14 +130,14 @@ createForm()
   {
   this.missionnaireService.deleteMissionnaire(this.selectedMissionnaire.cin).subscribe(
     res => {
-      this.selectedMissionnaire = new missionnaire() ;
+      this.selectedMissionnaire = new Missionnaire() ;
       this.missionnaireService.loadMissionaire() ; 
       this.operation='' ; 
     }
   )}
 
   add(){
-    console.log(this.missionnaireForm.value.graade.code) ; 
+    console.log(this.missionnaireForm.value.graade) ; 
     const m = this.missionnaireForm.value ;
     alert(JSON.stringify(m));
     this.missionnaireService.addMissionnaire(m).subscribe(

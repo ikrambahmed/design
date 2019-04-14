@@ -7,6 +7,8 @@ import { environment } from '../shared/environment';
 import { budget } from '../models/budget';
 import { budgetProjet } from '../models/budgetProjet';
 import { Projet } from '../models/Projet';
+import { OrdMissService } from './ord-miss.service';
+import { frais } from '../models/frais';
 
 @Injectable({
   providedIn: 'root'
@@ -73,4 +75,20 @@ export class MissionService {
     return this.http.get(this.baseUrl+'/api/listBudgetProjetbydept?codeDept='+code) ; 
 
   }
+  getTypeFrais():Observable<any>{
+    return this.http.get(this.baseUrl+'/api/listType') ; 
+  }
+
+  getOneMission(m:mission):Observable<any>{
+    console.log("inside service");
+    return this.http.post(this.baseUrl+'/api/mission/findById',m) ; 
+  }
+  getFraisMission(numMission:String , numOrd:Number , cin :String , codeDept : String ):Observable<any>{
+    return this.http.get(this.baseUrl+'/api/getFraisMission?numMission='+numMission+'&numOrd='+numOrd+'&cin='+cin+'&codeDept='+codeDept) ; 
+
+  }
+  addFrais(m:frais):Observable<any>{
+    console.log('service frais') ; 
+    return this.http.post(this.baseUrl+'/api/addFrais',m) ; }
+ 
 }

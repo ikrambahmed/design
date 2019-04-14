@@ -1,5 +1,5 @@
 
-export class pays {
+export class Pays {
     public  codPays?:String;
     public  libPaysa?:String;
     public  libPaysl?:String;
@@ -7,7 +7,7 @@ export class pays {
     public  prep?:String;
     public  pour?:String;
 
-    constructor(   codPays?:String , 
+    constructor(codPays?:String , 
           libPaysa?:String,
           libPaysl?:String,
           langue?:String,

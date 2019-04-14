@@ -45,6 +45,10 @@ import { TokenInterceptor } from './shared/TokenInterceptor';
 import { BudgetDeptComponent } from './budget-dept/budget-dept.component';
 import { BudgetProjComponent } from './budget-proj/budget-proj.component';
 import { ProjetComponent } from './projet/projet.component';
+import { RecapComponent } from './recap/recap.component';
+import { OrdMissService } from './services/ord-miss.service';
+import { StepperComponent } from './stepper/stepper.component';
+import { ContentMissionComponent } from './content-mission/content-mission.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,10 @@ import { ProjetComponent } from './projet/projet.component';
     FraisMissionComponent,
     BudgetDeptComponent,
     BudgetProjComponent,
-    ProjetComponent],
+    ProjetComponent,
+    RecapComponent,
+    StepperComponent,
+    ContentMissionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -87,7 +94,7 @@ import { ProjetComponent } from './projet/projet.component';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
 
-  providers: [ CookieService,MissionnaireService,ListeMissionnaireService,MissionService, HomeService,AuthService,AppService , 
+  providers: [ CookieService,MissionnaireService,ListeMissionnaireService,MissionService, HomeService,AuthService,AppService , OrdMissService,
     {provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor  , multi : true } , 
    /* {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

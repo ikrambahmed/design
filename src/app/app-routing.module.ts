@@ -17,6 +17,9 @@ import { FraisMissionComponent } from './frais-mission/frais-mission.component';
 import { BudgetDeptComponent } from './budget-dept/budget-dept.component';
 import { BudgetProjComponent } from './budget-proj/budget-proj.component';
 import { ProjetComponent } from './projet/projet.component';
+import { RecapComponent } from './recap/recap.component';
+import { StepperComponent } from './stepper/stepper.component';
+import { ContentMissionComponent } from './content-mission/content-mission.component';
 
 const routes: Routes = [
   {path :'login' , component : LoginComponent} , 
@@ -35,7 +38,11 @@ const routes: Routes = [
     {path:'frais' , component:FraisMissionComponent},
     {path:'budgetDept' , component:BudgetDeptComponent} , 
     {path:'budgetProj', component:BudgetProjComponent} ,
-    {path:'projet', component:ProjetComponent}
+    {path:'projet', component:ProjetComponent},
+    {path:'recap',component:RecapComponent},
+    {path:'stepper',component:StepperComponent},
+    {path:'content',component:ContentMissionComponent}
+
 
 
 

@@ -1,28 +1,30 @@
 import { mission } from './mission';
 import { ordMiss } from './Ord_Miss';
-import { missionnaire } from './missionnaire';
-import { pays } from './pays';
+import { Missionnaire } from './missionnaire';
+import { Pays } from './pays';
 import { Projet } from './Projet';
+import { TypeFrais } from './typeFrais';
 
 export class frais {
-    constructor(public numMission? : mission ,
-        public numord? : ordMiss , 
-        public cin?  :missionnaire,
-        public codPays?  :pays , 
+    constructor(public numMission? : String ,
+        public numord? : number , 
+        public cin?  :String,
+        public codPays?  :String , 
         public valeurP?:Number , 
         public valeurR?:Number , 
         public supporte ?:Number , 
         public codPrj ?:Projet , 
         public observ ?:String , 
         public  NVille?:String,
-    
-    public  typetransport?:String ,
-        public aobserv ?:String) 
+        public typFrais?:String,
+        public  typetransport?:String ,
+        public aobserv ?:String,
+        public ordMis?:ordMiss ,
+        public missionnaire?:Missionnaire,
+        public pays?:Pays , 
+        public typFrais1?:TypeFrais)
          {
-             this.numMission= new mission() ; 
-             this.numord = new ordMiss() ; 
-             this.cin= new missionnaire() ; 
-             this.codPays=new pays() ; 
-             this.codPrj = new Projet() ; 
+this.missionnaire=new Missionnaire() ;
+            this.pays=new Pays() ; 
          } 
 }

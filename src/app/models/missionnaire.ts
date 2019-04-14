@@ -2,8 +2,9 @@ import { grade } from './grade';
 import { fonction } from './fonction';
 import { classe } from './classe';
 import { categorie } from './categorie';
+import { DeptGen } from './DeptGen';
 
-export class missionnaire {
+export class Missionnaire {
   cin: String;
   matricule: String;
   nom: String;
@@ -24,6 +25,7 @@ export class missionnaire {
   fonnction: fonction;
   classee: classe;
   cat: categorie;
+  code:DeptGen ; 
 
   constructor(
     cin?: String,
@@ -45,12 +47,14 @@ export class missionnaire {
     graade?: grade,
     fonnction?: fonction,
     classee?: classe,
-    cat?: categorie
+    cat?: categorie,
+    code?:DeptGen,
     // public  group?:number ,
     //   public  dept?:number 
   ) {
     // public  group?:number ,
     // public  dept?:number 
+    this.code=new DeptGen() ; 
     this.graade = new grade();
     this.fonnction = new fonction();
     this.classee = new classe();

@@ -12,9 +12,12 @@ import { budget } from '../models/budget';
 })
 export class MissionComponent implements OnInit {
   Avoirbudg:Boolean ; 
+  x:Number ; 
+  Date_depart :Date ; 
+  Date_arrivee:Date; 
   show : Boolean  ; 
-  datdepP:Date ; 
-  datarrP:Date ; 
+  datdepP1:Date=new Date() ; 
+  datarrP1:Date=new Date() ; 
   mission: mission ; 
   cod : String ;
   codeMission : String ; 
@@ -57,6 +60,27 @@ console.log(this.Avoirbudg) ;
 )}
 Avoirbudgproj:Boolean ; 
 budgetsProjet:budget[] ; 
+
+dateDiff(date1, date2){
+  var tmp = date2 - date1;
+
+  tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+  let sec = tmp % 60;                    // Extraction du nombre de secondes
+
+  tmp = Math.floor((tmp-sec)/60);    // Nombre de minutes (partie entière)
+  let min = tmp % 60;                    // Extraction du nombre de minutes
+
+  tmp = Math.floor((tmp-min)/60);    // Nombre d'heures (entières)
+  let hour = tmp % 24;                   // Extraction du nombre d'heures
+
+  tmp = Math.floor((tmp-hour)/24);   // Nombre de jours restants
+  let day = tmp;
+  console.log('days',day) ; 
+
+  return day;
+}
+
+
 loadBudgetsProjet()
 {this.missionService.getBudgetsProjet(this.cod).subscribe(
   data => { this.budgetsProjet=data;
@@ -74,8 +98,39 @@ loadBudgetsProjet()
   error => {console.log(error); } , 
   () => {console.log('loading budgets was done ')}
 )}
+nb:number ; 
 
+toggle(){
+  console.log('karouma') ;
+  console.log(this.datdepP1) ; 
+  console.log(this.datarrP1) ; 
+  let key1 = 'datdepP';
 
+  localStorage.setItem(key1, JSON.stringify(this.datdepP1));
+  let key2 = 'datarrP';
+
+  localStorage.setItem(key2, JSON.stringify(this.datarrP1));
+
+  var promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let dateString=localStorage.getItem('datdepP') ; 
+      this.Date_depart = new Date(dateString);
+      console.log('daate',this.Date_depart) ; 
+     
+      let dateString2=localStorage.getItem('datarrP') ; 
+      this.Date_arrivee = new Date(dateString2);
+     console.log(this.Date_arrivee) ; 
+     
+     this.nb =this.dateDiff(this.Date_depart,this.Date_arrivee) ;
+     console.log('durree',this.nb) ; 
+     let key3='duree' ; 
+     localStorage.setItem(key3, JSON.stringify(this.nb));
+      resolve();
+    }, 6000);
+  
+});
+
+}
   ngOnInit() {
     //this.mission=new mission() ; 
     this.currentYea = (new Date()).getFullYear() ; 
@@ -93,8 +148,7 @@ loadBudgetsProjet()
     this.show=true ; 
     this.loadBudgets() ; 
     this.loadBudgetsProjet() ; 
-
-
+   
   }
   createForm()
   {
@@ -107,6 +161,7 @@ loadBudgetsProjet()
       datdepP: ['',Validators.required],
       datarrP : ['',Validators.required],
       motcle :  ['',Validators.required] , 
+      duree  :  ['',Validators.required] 
   });
   }
 
@@ -121,10 +176,14 @@ loadBudgetsProjet()
           localStorage.setItem(key,this.missionForm.get('numMission').value);
           let key1 = 'datdepP';
 
-          localStorage.setItem(key1, JSON.stringify(this.datdepP));
+          localStorage.setItem(key1, JSON.stringify(this.datdepP1));
           let key2 = 'datarrP';
 
-          localStorage.setItem(key2, JSON.stringify(this.datarrP));
+          localStorage.setItem(key2, JSON.stringify(this.datarrP1));
+          let x =this.dateDiff(this.datdepP1,this.datarrP1) ; 
+          console.log('durree',x) ; 
+          let key3='duree' ; 
+          localStorage.setItem(key3, JSON.stringify(this.x));
 
           this.reloadCode() ; 
           this.createForm() ; 
@@ -155,6 +214,8 @@ loadBudgetsProjet()
   // localStorage.setItem(key,this.missionForm.get('numMission').value);
   //console.log('codeeee',this.missionForm.get('numMission').value);
 
+ //  this.x =this.dateDiff(this.datdepP,this.datarrP) ; 
+  //console.log('durreeeee',this.x) ; 
 
 
   }) ; 

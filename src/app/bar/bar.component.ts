@@ -36,7 +36,7 @@ export class BarComponent implements OnInit {
 }
 goto2()
  {
-  this.router.navigateByUrl('/h-mission');
+  this.router.navigateByUrl('/mission');
 }
 goto3()
 {
