@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../services/home.service';
 import { DeptGen } from '../models/DeptGen';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-bar',
@@ -17,7 +18,7 @@ export class BarComponent implements OnInit {
   username:string;
   depart:String="" ; 
   dep:DeptGen = new DeptGen();
-  constructor(public router:Router, private homeService : HomeService) {   }
+  constructor(public router:Router, private homeService : HomeService , private appService : AppService) {   }
   ngOnInit(){
     this.cin_user = localStorage.getItem('username');
     console.log("username: "+this.cin_user) ; 
@@ -29,7 +30,12 @@ export class BarComponent implements OnInit {
    // this.nav.knowUser(this.user);
   
   }
-  
+  logOut(){
+    localStorage.clear();
+    this.appService.logout(()=>{
+      this.router.navigateByUrl('/login');
+    });
+  }
  goto1()
  {
   this.router.navigateByUrl('/bar');

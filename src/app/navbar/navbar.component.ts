@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeptGen } from '../models/DeptGen';
 import { Router } from '@angular/router';
 import { HomeService } from '../services/home.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   username:string;
   depart:String="" ; 
   dep:DeptGen = new DeptGen();
-  constructor(public route:Router, private homeService : HomeService) {  }
+  constructor(public router:Router, private homeService : HomeService, private appService : AppService) {  }
   ngOnInit(){
   
    // this.nav.knowUser(this.user);
@@ -29,6 +30,13 @@ export class NavbarComponent implements OnInit {
    this.depart=data.libA;
   }
   
+  logOut(){
+    localStorage.clear();
+    this.appService.logout(()=>{
+      this.router.navigateByUrl('/login');
+    });
+  }
+
  goTo()
  {
  this.msg='on' ; 
